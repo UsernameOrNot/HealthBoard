@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Health Board Checker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+  <div class="license">
+      <br> Last Updated - 03-12-2024 <br>
+      Created by IW (Ifan Winter)
+    </div>
+    <style>
+          font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+        
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .license {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.3); /* Faded text */
+        }
+        @import "compass/css3";
+        
+        .btn {
+            display: inline-block;
+            padding: 0.5em 1em;
+            background: #808080;
+            color: #fff;
+            margin: 1em;
+            border-radius: 25px; /* Rounded corners */
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover, .btn:focus {
+            color: #fff;
+            background: #333;
+        }
+
+        .static-img {
+            display: block; 
+        }
+
+        iframe {
+            max-width: 100%; 
+        }
+
+        .map-container {
+            width: 100%;
+            margin: 0 auto;
+            height: 500px;  /* Increase the height */
+            padding-top: 0;  /* Remove the padding-top to allow for more height */
+            position: relative;
+            display: block; /* Make sure it's visible */
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;  /* Ensure it fills the container */
+            position: absolute;
+            top: 0; 
+            right: 0;
+            left: 0; 
+            bottom: 0;   
+        }
+
+        @media all and (min-width: 768px) {
+            .map-container {
+                width: 100%;  /* Take full width on medium screens */
+                max-width: 1250px;  /* Max width on larger screens */
+            }
+        }
+
+        /* Medium Screens */
+        @media all and (min-width: 34.375em) {
+            .map-container {
+                display: block;
+            } 
+            .static-img {
+                display: none; 
+            }
+        }
+
+        /* Search Bar Style */
+        #search-bar {
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        .form-inline .form-group {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Button Leveling */
+        .form-inline button {
+            margin-left: 10px;
+        }
+
+        .footer-btn {
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .footer-btn a {
+            display: inline-block;
+            padding: 0.6em 1.4em;
+            font-size: 1rem;
+            border-radius: 25px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .footer-btn .btn-info {
+            background-color: #17a2b8;
+        }
+
+        .footer-btn .btn-warning {
+            background-color: #ffc107;
+        }
+
+        .footer-btn .btn-danger {
+            background-color: #dc3545; /* Red color */
+        }
+
+        .footer-btn a:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #121212;
+            color: #fff;
+        }
+
+        .dark-mode .btn {
+            background-color: #444;
+            color: #fff;
+        }
+
+        .dark-mode .btn:hover, .dark-mode .btn:focus {
+            background-color: #555;
+        }
+
+        /* Dark Mode Toggle Button */
+        #dark-mode-toggle {
+            background-color: #000; /* Set to black */
+            color: white; /* Text color */
+            border: 1px solid #444; /* Optional: dark border for contrast */
+        }
+
+/* Snowflakes */
+.snowflakes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    filter: blur(2px);
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    animation: snowfall 10s linear infinite;
+}
+
+.snowflake img {
+    width: 30px; /* Set the desired width */
+    height: 30px; /* Set the desired height */
+    object-fit: contain; /* Ensures the image retains its aspect ratio */
+}
+
+@keyframes snowfall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+/* Custom animations and positions for each snowflake */
+        .snowflake:nth-child(1) {
+            animation-duration: 8s;
+            left: 5%;
+            
+        }
+
+        .snowflake:nth-child(2) {
+            animation-duration: 12s;
+            left: 20%;
+            
+        }
+
+        .snowflake:nth-child(3) {
+            animation-duration: 10s;
+            left: 30%;
+           
+        }
+
+        .snowflake:nth-child(4) {
+            animation-duration: 7s;
+            left: 45%;
+            
+        }
+
+        .snowflake:nth-child(5) {
+            animation-duration: 11s;
+            left: 60%;
+            
+        }
+
+        .snowflake:nth-child(6) {
+            animation-duration: 15s;
+            left: 70%;
+            
+        }
+
+        .snowflake:nth-child(7) {
+            animation-duration: 9s;
+            left: 80%;
+            
+        }
+
+        .snowflake:nth-child(8) {
+            animation-duration: 14s;
+            left: 10%;
+            
+        }
+
+        .snowflake:nth-child(9) {
+            animation-duration: 16s;
+            left: 25%;
+            
+        }
+
+        .snowflake:nth-child(10) {
+            animation-duration: 13s;
+            left: 40%;
+            
+        }
+
+        .snowflake:nth-child(11) {
+            animation-duration: 12s;
+            left: 55%;
+           
+        }
+
+        .snowflake:nth-child(12) {
+            animation-duration: 10s;
+            left: 65%;
+            
+        }
+
+        .snowflake:nth-child(13) {
+            animation-duration: 17s;
+            left: 75%;
+            
+        }
+
+        .snowflake:nth-child(14) {
+            animation-duration: 9s;
+            left: 90%;
+           
+        }
+
+        .snowflake:nth-child(15) {
+            animation-duration: 14s;
+            left: 5%;
+            
+        }
+
+        .snowflake:nth-child(16) {
+            animation-duration: 18s;
+            left: 35%;
+            
+        }
+
+        .snowflake:nth-child(17) {
+            animation-duration: 11s;
+            left: 50%;
+            
+        }
+
+        .snowflake:nth-child(18) {
+            animation-duration: 16s;
+            left: 60%;
+     
+        }
+
+        .snowflake:nth-child(19) {
+            animation-duration: 12s;
+            left: 80%;
+  
+        }
+
+        .snowflake:nth-child(20) {
+            animation-duration: 15s;
+            left: 90%;
+            
+        }
+
+        .snowflake:nth-child(21) {
+            animation-duration: 10s;
+            left: 30%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="pattern-description">
+            <h1 style="text-align: center;">Health Board Checker </h1>
+            <p style="text-align: center;">
+                I’m Ifan, the Service Administrator, and I created this project to help you search for health boards in Wales using postcodes. If you encounter any issues, please use the report button so I can address them promptly. I hope you find this tool useful! If you have any feedback or problems, don't hesitate to reach out using the report button.
+                <br> <strong>Quick tip - If you have an address and everything says undefined, click a near area and put that postcode instead. This way you'll get the Health Board</strong></br>
+            </p>
+        </section>
+
+        <!-- Snowflakes Effect -->
+        <div class="snowflakes" aria-hidden="true">
+    <div class="snowflake"><img src="https://www.dropbox.com/scl/fi/2v5xtb58j8fgd4ols8z0a/Umbrella-cymru.png?rlkey=q1tv77l7zmv74wwgsu1pg6n6b&raw=1" alt="Snowflake" /></div>
+    <div class="snowflake"><img src="https://www.dropbox.com/scl/fi/2v5xtb58j8fgd4ols8z0a/Umbrella-cymru.png?rlkey=q1tv77l7zmv74wwgsu1pg6n6b&raw=1" alt="Snowflake" /></div>
+    <div class="snowflake"><img src="https://www.dropbox.com/scl/fi/2v5xtb58j8fgd4ols8z0a/Umbrella-cymru.png?rlkey=q1tv77l7zmv74wwgsu1pg6n6b&raw=1" alt="Snowflake" /></div>
+    <div class="snowflake"><img src="https://www.dropbox.com/scl/fi/2v5xtb58j8fgd4ols8z0a/Umbrella-cymru.png?rlkey=q1tv77l7zmv74wwgsu1pg6n6b&raw=1" alt="Snowflake" /></div>
+          
+    <div class="snowflake"><img src="https://www.dropbox.com/scl/fi/2v5xtb58j8fgd4ols8z0a/Umbrella-cymru.png?rlkey=q1tv77l7zmv74wwgsu1pg6n6b&raw=1" alt="Snowflake" /></div>
+          
+    <div class="snowflake"><img src="https://www.dropbox.com/scl/fi/2v5xtb58j8fgd4ols8z0a/Umbrella-cymru.png?rlkey=q1tv77l7zmv74wwgsu1pg6n6b&raw=1" alt="Snowflake" /></div> 
+     <div class="snowflake"><img src="https://www.dropbox.com/scl/fi/2v5xtb58j8fgd4ols8z0a/Umbrella-cymru.png?rlkey=q1tv77l7zmv74wwgsu1pg6n6b&raw=1" alt="Snowflake" /></div>
+    <div class="snowflake"><img src="https://www.dropbox.com/scl/fi/2v5xtb58j8fgd4ols8z0a/Umbrella-cymru.png?rlkey=q1tv77l7zmv74wwgsu1pg6n6b&raw=1" alt="Snowflake" /></div>
+          <div class="snowflake"><img src="https://www.dropbox.com/scl/fi/2v5xtb58j8fgd4ols8z0a/Umbrella-cymru.png?rlkey=q1tv77l7zmv74wwgsu1pg6n6b&raw=1" alt="Snowflake" /></div>
+          <div class="snowflake"><img src="https://www.dropbox.com/scl/fi/2v5xtb58j8fgd4ols8z0a/Umbrella-cymru.png?rlkey=q1tv77l7zmv74wwgsu1pg6n6b&raw=1" alt="Snowflake" /></div>
+          <div class="snowflake"><img src="https://www.dropbox.com/scl/fi/2v5xtb58j8fgd4ols8z0a/Umbrella-cymru.png?rlkey=q1tv77l7zmv74wwgsu1pg6n6b&raw=1" alt="Snowflake" /></div>
+          <div class="snowflake"><img src="https://www.dropbox.com/scl/fi/2v5xtb58j8fgd4ols8z0a/Umbrella-cymru.png?rlkey=q1tv77l7zmv74wwgsu1pg6n6b&raw=1" alt="Snowflake" /></div>
+          <div class="snowflake"><img src="https://www.dropbox.com/scl/fi/2v5xtb58j8fgd4ols8z0a/Umbrella-cymru.png?rlkey=q1tv77l7zmv74wwgsu1pg6n6b&raw=1" alt="Snowflake" /></div>
+          <div class="snowflake"><img src="https://www.dropbox.com/scl/fi/2v5xtb58j8fgd4ols8z0a/Umbrella-cymru.png?rlkey=q1tv77l7zmv74wwgsu1pg6n6b&raw=1" alt="Snowflake" /></div>
+          
+    <!-- Add more as needed -->
+</div>
+
+
+        <!-- Search Bar -->
+        <div id="search-bar" class="row">
+            <div class="col-12">
+                <form id="search-form" class="form-inline justify-content-center">
+                    <div class="d-flex">
+                        <input type="text" id="address" class="form-control" placeholder="Enter address" />
+                    </div>
+                     <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Local Authority button -->
+        <div class="footer-btn">
+            <a href="https://www.gov.wales/find-your-local-authority" class="btn btn-info" target="_blank">Local Authority Checker</a>
+        </div>
+
+        <!-- Report a Problem Button -->
+        <div class="footer-btn">
+            <a href="https://forms.office.com/r/WuANcjdNgS" class="btn btn-danger" target="_blank">Report a Problem</a>
+        </div>
+
+        <!-- Dark Mode Toggle Button -->
+        <div class="footer-btn">
+            <button id="dark-mode-toggle" class="btn btn-secondary">Toggle Dark Mode</button>
+        </div>
+
+       <!-- NHS Map button -->
+        <div class="footer-btn">
+            <a href="https://111.wales.nhs.uk/pdfs/WALESMAP-eng.pdf" class="btn btn-warning" target="_blank">HealthBoard Map</a>
+        </div>
+
+        <div id="pattern" class="pattern">
+            <div class="map">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var map, geocoder, marker;
+        var sw = document.body.clientWidth,
+            bp = 550,
+            $map = $('.map');
+
+        // API Key and Map URLs
+        var static = "https://maps.googleapis.com/maps/api/staticmap?center=51.4810,-3.1791&zoom=7&markers=51.4810,-3.1791&size=640x320&sensor=true&key=AIzaSyDynRsjTcTXk9FrA-SH7kJ3GO33mWdkqTg";
+        var embed = '<iframe width="980" height="650" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=wales&amp;aq=&amp;sll=51.4810,-3.1791&amp;sspn=0.667391,1.447449&amp;ie=UTF8&amp;hq=&amp;hnear=Wales&amp;t=m&amp;ll=51.4810,-3.1791&amp;spn=0.117583,0.336113&amp;z=7&amp;iwloc=A&amp;output=embed&key=AIzaSyDynRsjTcTXk9FrA-SH7kJ3GO33mWdkqTg"></iframe>';
+
+        $(document).ready(function(){
+            buildMap();
+            geocoder = new google.maps.Geocoder();
+
+            // Dark Mode Toggle
+            $('#dark-mode-toggle').on('click', function() {
+                $('body').toggleClass('dark-mode');
+            });
+
+            // Map Reset Button
+            $('#map-reset').on('click', function() {
+                resetMap();
+            });
+        });
+
+        // Build the map based on screen size
+        function buildMap() {
+            if (sw > bp) { // If Large Screen
+                if ($('.map-container').length < 1) {
+                    buildEmbed();
+                }
+            } else {
+                if ($('.static-img').length < 1) {
+                    buildStatic();
+                }
+            }
+        }
+
+        function buildEmbed() {
+            $('<div class="map-container"/>').html(embed).prependTo($map);
+        };
+
+        function buildStatic() {
+            var mapLink = $('.map-link').attr('href'),
+                $img = $('<img class="static-img" />').attr('src', static);
+            $('<a/>').attr('href', mapLink).html($img).prependTo($map);
+        }
+
+        // Reset Map Functionality
+        function resetMap() {
+            if (map) {
+                var defaultLatLng = new google.maps.LatLng(51.4810, -3.1791);
+                map.setCenter(defaultLatLng);
+                map.setZoom(7);
+            }
+        }
+
+        // Define health boards and their corresponding counties
+        var healthBoards = {
+            "Powys Teaching Health Board": ["Powys"],
+            "Hywel Dda University Health Board": ["Carmarthenshire", "Ceredigion", "Pembrokeshire" , "Saint Dogmaels","St Davids"],
+            "Swansea Bay University Health Board": ["Swansea", "Neath Port Talbot"],
+            "Cwm Taf Morgannwg University Health Board": ["Bridgend", "Merthyr Tydfil County Borough", "Rhondda Cynon Taf", "Bridgend County Borough","Rhondda Cynon Taff"],
+            "Aneurin Bevan University Health Board": ["Blaenau Gwent", "Caerphilly County Borough", "Monmouthshire", "Newport", "Torfaen Principal Area","Cwmbran"],
+            "Betsi Cadwaladr University Health Board": [" Isle of Anglesey", "Clwyd", "Conwy", "Denbighshire", "Gwynedd", "Wrexham Principal Area","Flintshire", "Rhyd-wyn"],
+            "Cardiff and Vale University Health Board": ["Cardiff", "Vale of Glamorgan"],
+            "Velindre University NHS Trust": ["Cardiff", "Rhondda Cynon Taf"]
+        };
+
+        // Normalize the county names for easier comparison
+        function normalizeCounty(county) {
+            return county.toLowerCase().replace(/county|county borough|principal area/g, '').trim();
+        }
+
+        // Handle form submission and geocode address
+        $('#search-form').on('submit', function(e) {
+            e.preventDefault();
+            var address = $('#address').val();
+            geocodeAddress(address);
+        });
+
+        // Geocode the address and show map
+        function geocodeAddress(address) {
+            geocoder.geocode({ 'address': address }, function(results, status) {
+                if (status === 'OK') {
+                    var latLng = results[0].geometry.location;
+
+                    if (map) {
+                        map.setCenter(latLng);
+                    } else {
+                        map = new google.maps.Map(document.querySelector('.map-container'), {
+                            center: latLng,
+                            zoom: 15,
+                        });
+                    }
+
+                    if (!marker) {
+                        marker = new google.maps.Marker({
+                            map: map,
+                        });
+                    }
+                    marker.setPosition(latLng);
+
+                    var city, county, town;
+                    results[0].address_components.forEach(function(component) {
+                        if (component.types.includes("locality")) city = component.long_name;
+                        if (component.types.includes("administrative_area_level_2")) county = component.long_name;
+                        if (component.types.includes("sublocality")) town = component.long_name;
+                    });
+
+                    if (!county) county = city;
+
+                    var normalizedCounty = normalizeCounty(county);
+                    var healthBoard = '';
+
+                    for (var board in healthBoards) {
+                        for (var i = 0; i < healthBoards[board].length; i++) {
+                            if (normalizeCounty(healthBoards[board][i]) === normalizedCounty) {
+                                healthBoard = board;
+                                break;
+                            }
+                        }
+                        if (healthBoard) break;
+                    }
+
+                    var infoContent = '<div style="color: #00001a; font-weight: bold; text-shadow: 0 0 5px #fff, 0 0 10px #fff;">Address: ' + results[0].formatted_address + 
+                                      '<br>City: ' + city + 
+                                      '<br>County: ' + county + 
+                                      '<br>Town: ' + town;
+
+                    if (healthBoard) {
+                        infoContent += '<br>Health Board: ' + healthBoard;
+                    }
+                    infoContent += '</div>'; // Close the div with bold, grey text and white outline
+
+                    var infoWindow = new google.maps.InfoWindow({
+                        content: infoContent
+                    });
+                    infoWindow.open(map, marker);
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDynRsjTcTXk9FrA-SH7kJ3GO33mWdkqTg&callback=initMap" async defer></script>
+</body>
+</html>
